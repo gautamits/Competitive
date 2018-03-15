@@ -1,0 +1,25 @@
+vector<int> Solution::plusOne(vector<int> &A) {
+    int i;
+    int n=A.size();
+    int sum,carry=1;
+    for(i=0;i<n/2;i++)  //reverse the vector
+   		swap(A[i],A[n-1-i]);
+   	i=n-1;
+   	while(A[i]==0 && i>=0){ //trim zeros
+    	A.pop_back();
+    	i--;
+    }
+    n=A.size();
+    for(i=0;i<n;i++){ //perform addition
+    	sum=carry+A[i];
+    	carry=sum/10;
+    	sum=sum%10;
+    	A[i]=sum;
+    }
+    if(carry>0) //add carry bit
+    	A.push_back(carry);
+    n=A.size();
+    for(i=0;i<n/2;i++)  //reverse array
+   		swap(A[i],A[n-1-i]);
+    return A;
+}
